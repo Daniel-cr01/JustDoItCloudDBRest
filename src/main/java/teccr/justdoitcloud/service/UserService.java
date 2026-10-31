@@ -44,6 +44,13 @@ public class UserService {
         }
         return userRepository.findById(id);
     }
+    
+    public Optional<User> getUserByUserName(String userName) {
+        if (userName == null || userName.trim().isEmpty()) {
+            return Optional.empty();
+        }
+        return userRepository.findByUserName(userName.trim());
+    }
 
     public User createUser(User user) {
         user.setCreatedAt(LocalDateTime.now());
